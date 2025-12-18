@@ -1,6 +1,6 @@
 # Monthly Stock Analysis – Data Engineering Intern Assignment
 
-## 📌 Project Overview
+##  Project Overview
 This project transforms **daily stock price data** into **monthly aggregated summaries** and computes key **technical indicators** used in financial analysis.  
 The solution is implemented using **Python and Pandas only**, following a **modular and scalable data engineering approach**.
 
@@ -11,7 +11,7 @@ The pipeline:
 
 ---
 
-## 📊 Dataset Details
+##  Dataset Details
 - **Frequency:** Daily stock price data
 - **Duration:** 2 years (24 months)
 - **Tickers:**  
@@ -21,9 +21,9 @@ The pipeline:
 `date, volume, open, high, low, close, adjclose, ticker`
 ---
 
-## 🧠 Processing Logic
+##  Processing Logic
 
-### 1️⃣ Monthly Aggregation
+### 1 Monthly Aggregation
 Daily data is resampled to **monthly frequency (Month-End)** with the following logic:
 
 | Column | Monthly Calculation |
@@ -33,11 +33,11 @@ Daily data is resampled to **monthly frequency (Month-End)** with the following 
 | High | Maximum price in the month |
 | Low | Minimum price in the month |
 
-> ❗ Open and Close are **not averages**; they represent exact first and last values.
+>  Open and Close are **not averages**; they represent exact first and last values.
 
 ---
 
-### 2️⃣ Technical Indicators
+### 2 Technical Indicators
 All indicators are calculated **only on monthly closing prices**.
 
 - **SMA 10** – Simple Moving Average (10 months)
@@ -49,7 +49,7 @@ Implementation uses Pandas rolling and exponential window functions (no third-pa
 
 ---
 
-## 📂 Project Directory Structure
+##  Project Directory Structure
 ```
 monthly-stock-analysis/
 │
@@ -82,7 +82,7 @@ monthly-stock-analysis/
 ```
 ---
 
-## 📁 Output Specifications
+##  Output Specifications
 - **10 CSV files** (one per ticker)
 - **Exactly 24 rows per file** (24 months)
 - File naming format:  
@@ -95,18 +95,18 @@ Each output file contains:
  
 ---
 
-## ⚙️ How to Run the Project
+##  How to Run the Project
 
-### 1️⃣ Install dependencies
+### 1 Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
-### 2️⃣ Run the pipeline
+### 2 Run the pipeline
 ```bash
 python src/main.py
 ```
 ---
-## 🧪 Practical Assumptions
+##  Practical Assumptions
 
 1. The dataset contains valid daily stock price records with no duplicate rows per ticker and date.
 
@@ -127,6 +127,3 @@ python src/main.py
 9. All computations are performed using **vectorized Pandas operations** without relying on third-party technical analysis libraries.
 
 10. The dataset size is assumed to be small enough to fit in memory, making Pandas a suitable choice over distributed processing frameworks.
-
-
-
