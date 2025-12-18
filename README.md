@@ -106,17 +106,27 @@ pip install -r requirements.txt
 python src/main.py
 ```
 ---
-## 🧪Assumptions Made
+## 🧪 Practical Assumptions
 
-- Dataset contains no missing trading months
+1. The dataset contains valid daily stock price records with no duplicate rows per ticker and date.
 
-- Market holidays are implicitly handled by available trading days
+2. Missing trading days (weekends and market holidays) are implicitly handled, as monthly aggregation is performed only on available trading days.
 
-- Month-end is considered the last available trading day
+3. Month-end is defined as the **last available trading day of the month**, not necessarily the calendar month-end.
 
-- Initial EMA values use Pandas default initialization
+4. Monthly **Open** and **Close** prices are derived from the **first and last trading day** of each month respectively, and are not averaged.
 
-- Missing indicator values at the beginning are expected (NaN)
+5. Technical indicators (SMA & EMA) are calculated **only on monthly closing prices**, as required by the assignment.
+
+6. Initial values for SMA and EMA result in `NaN` for early months where sufficient historical data is not available. This behavior is expected and aligns with standard financial practices.
+
+7. Exponential Moving Average (EMA) values use Pandas’ default initialization method, which applies the standard recursive EMA formula with an internally computed smoothing factor.
+
+8. The dataset spans exactly **24 consecutive months**, and no month-level gaps are present in the input data.
+
+9. All computations are performed using **vectorized Pandas operations** without relying on third-party technical analysis libraries.
+
+10. The dataset size is assumed to be small enough to fit in memory, making Pandas a suitable choice over distributed processing frameworks.
 
 
 
